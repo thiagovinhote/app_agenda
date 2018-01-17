@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
 
-const Register = () => (
+const Login = () => (
   <View style={[styles.container, styles.content]} >
     <Text style={styles.title}>SCHEDULER</Text>
 
@@ -15,14 +15,6 @@ const Register = () => (
       <Icon style={styles.icon} name="phone" size={20} />
       <TextInput
         placeholder="Seu número de telefone"
-        style={styles.input}
-        placeholderTextColor="#ccc"
-      />
-    </View>
-    <View style={styles.containerInput}>
-      <Icon style={styles.icon} name="user" size={20} />
-      <TextInput
-        placeholder="Nome completo"
         style={styles.input}
         placeholderTextColor="#ccc"
       />
@@ -38,13 +30,13 @@ const Register = () => (
     </View>
 
     <TouchableOpacity activeOpacity={0.6} style={styles.button}>
-      <Text style={styles.text}>Criar conta grátis</Text>
+      <Text style={styles.text}>Entrar</Text>
     </TouchableOpacity>
 
     <TouchableOpacity activeOpacity={0.6} style={styles.buttonNeat}>
-      <Text style={styles.textNeat}>Já tenho conta</Text>
+      <Text style={styles.textNeat}>Esqueci minha senha</Text>
     </TouchableOpacity>
   </View>
 );
 
-export default Register;
+export default Login;
