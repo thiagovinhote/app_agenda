@@ -5,9 +5,9 @@ import Register from 'pages/Register';
 import Login from 'pages/Login';
 
 const Routes = StackNavigator({
+  Identify: { screen: Identify },
   Login: { screen: Login },
   Register: { screen: Register },
-  Identify: { screen: Identify },
 }, {
   headerMode: 'none',
 });
