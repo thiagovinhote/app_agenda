@@ -1,9 +1,9 @@
 import { StackNavigator } from 'react-navigation';
 
-import Identifier from 'pages/Identifier';
+import Identify from 'pages/Identify';
 
 const Routes = StackNavigator({
-  Identifier: { screen: Identifier },
+  Identify: { screen: Identify },
 }, {
   headerMode: 'none',
 });
