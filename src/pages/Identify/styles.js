@@ -14,23 +14,30 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: fonts.bigger,
     fontWeight: '900',
+    letterSpacing: 3,
   },
 
   containerInput: {
     marginTop: 64,
+    flexDirection: 'row',
+    backgroundColor: colors.backgroundDark,
     alignSelf: 'stretch',
-    backgroundColor: colors.greenDark,
     borderRadius: metrics.baseRadius,
+    padding: metrics.mediumMargin,
+  },
+
+  icon: {
+    color: colors.white,
   },
 
   input: {
-    padding: metrics.mediumMargin,
+    flex: 2,
+    paddingLeft: metrics.smallMargin,
     color: colors.white,
-    fontSize: fonts.base,
   },
 
   button: {
-    marginTop: 15,
+    marginTop: metrics.smallMargin,
     padding: metrics.mediumMargin,
     alignSelf: 'stretch',
     alignItems: 'center',
