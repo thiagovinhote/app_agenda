@@ -15,6 +15,13 @@ import styles from './styles';
 class Register extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    navigation: PropTypes.shape({
+      state: PropTypes.shape({
+        params: PropTypes.shape({
+          phone: PropTypes.string,
+        }),
+      }),
+    }).isRequired,
   }
 
   navigateBack = () => {
@@ -23,6 +30,7 @@ class Register extends Component {
   }
 
   render() {
+    const { phone } = this.props.navigation.state.params;
     return (
       <View style={[styles.container, styles.content]} >
         <Text style={styles.title}>SCHEDULER</Text>
@@ -33,6 +41,8 @@ class Register extends Component {
             placeholder="Seu número de telefone"
             style={styles.input}
             placeholderTextColor="#ccc"
+            value={phone}
+            editable={false}
           />
         </View>
         <View style={styles.containerInput}>

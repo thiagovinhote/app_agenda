@@ -6,27 +6,46 @@ import PropTypes from 'prop-types';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import Notification from 'components/Notification';
+
 /* Redux */
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
+import AuthActions from 'store/ducks/auth';
 
 import styles from './styles';
 
 class Identify extends Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
+    authPhone: PropTypes.func.isRequired,
+    auth: PropTypes.shape({
+      loading: PropTypes.bool,
+      success: PropTypes.bool,
+      error: PropTypes.bool,
+    }).isRequired,
   }
 
-  navigateLogin = () => {
-    const { dispatch } = this.props;
-    return dispatch(NavigationActions.navigate({
-      routeName: 'Register',
-    }));
+  state = {
+    phone: '',
+    show: false,
+  }
+
+  checkPhone = () => {
+    const { authPhone } = this.props;
+    const { phone } = this.state;
+    this.setState({ show: true });
+
+    return authPhone(phone);
   }
 
   render() {
+    const { auth } = this.props;
     return (
       <View style={[styles.container, styles.content]} >
+        <Notification
+          show={this.state.show}
+          loading={auth.loading}
+        />
+
         <Text style={styles.title}>SCHEDULER</Text>
 
         <View style={styles.containerInput}>
@@ -35,13 +54,14 @@ class Identify extends Component {
             placeholder="Seu número de telefone"
             style={styles.input}
             placeholderTextColor="#ccc"
+            onChangeText={text => this.setState({ phone: text })}
           />
         </View>
 
         <TouchableOpacity
           activeOpacity={0.6}
           style={styles.button}
-          onPress={this.navigateLogin}
+          onPress={this.checkPhone}
         >
           <Text style={styles.text}>Entrar</Text>
         </TouchableOpacity>
@@ -50,8 +70,13 @@ class Identify extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
 const mapDispatchToProps = dispatch => ({
+  authPhone: phone => dispatch(AuthActions.authPhoneRequest(phone)),
   dispatch,
 });
 
-export default connect(null, mapDispatchToProps)(Identify);
+export default connect(mapStateToProps, mapDispatchToProps)(Identify);

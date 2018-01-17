@@ -5,16 +5,36 @@ import PropTypes from 'prop-types';
 /* Presentational */
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Notification from 'components/Notification';
 
 /* Redux */
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import AuthActions from 'store/ducks/auth';
 
 import styles from './styles';
 
 class Login extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    navigation: PropTypes.shape({
+      state: PropTypes.shape({
+        params: PropTypes.shape({
+          phone: PropTypes.string,
+        }),
+      }),
+    }).isRequired,
+    auth: PropTypes.shape({
+      loading: PropTypes.bool,
+      error: PropTypes.bool,
+    }).isRequired,
+    authAuthenticate: PropTypes.func.isRequired,
+  }
+
+  state = {
+    password: '',
+    show: false,
+    message: 'Telefone ou senha incorretos',
   }
 
   navigateBack = () => {
@@ -22,9 +42,27 @@ class Login extends Component {
     return dispatch(NavigationActions.back());
   }
 
+  authenticate = () => {
+    const { password } = this.state;
+    const { phone } = this.props.navigation.state.params;
+    const { authAuthenticate } = this.props;
+    this.setState({ show: true });
+
+    return authAuthenticate({ password, phone });
+  }
+
   render() {
+    const { phone } = this.props.navigation.state.params;
+    const { auth } = this.props;
     return (
       <View style={[styles.container, styles.content]} >
+        <Notification
+          message={this.state.message}
+          show={this.state.show}
+          loading={auth.loading}
+          danger={auth.error}
+        />
+
         <Text style={styles.title}>SCHEDULER</Text>
 
         <View style={styles.containerInput}>
@@ -33,6 +71,8 @@ class Login extends Component {
             placeholder="Seu número de telefone"
             style={styles.input}
             placeholderTextColor="#ccc"
+            value={phone}
+            editable={false}
           />
         </View>
         <View style={styles.containerInput}>
@@ -42,10 +82,15 @@ class Login extends Component {
             secureTextEntry
             style={styles.input}
             placeholderTextColor="#ccc"
+            onChangeText={text => this.setState({ password: text })}
           />
         </View>
 
-        <TouchableOpacity activeOpacity={0.6} style={styles.button}>
+        <TouchableOpacity
+          activeOpacity={0.6}
+          style={styles.button}
+          onPress={this.authenticate}
+        >
           <Text style={styles.text}>Entrar</Text>
         </TouchableOpacity>
 
@@ -61,8 +106,13 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
 const mapDispatchToProps = dispatch => ({
+  authAuthenticate: data => dispatch(AuthActions.authAuthenticateRequest(data)),
   dispatch,
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
