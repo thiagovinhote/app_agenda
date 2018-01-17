@@ -1,11 +1,22 @@
+import 'config/ReactotronConfig';
+import 'config/StatusBarConfig';
+
 /* Core */
 import React from 'react';
 
-/* Presentational */
-import { View } from 'react-native';
+/* Navigation */
+import NavigatorComponent from 'navigation';
+
+/* Store */
+import { Provider } from 'react-redux';
+import create from './store';
+
+const store = create();
 
 const App = () => (
-  <View />
+  <Provider store={store}>
+    <NavigatorComponent />
+  </Provider>
 );
 
 export default App;

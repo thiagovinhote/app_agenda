@@ -1,3 +1,5 @@
 export default {
-  background: '#000000',
+  white: '#FFF',
+
+  background: '#A55BD7',
 };
