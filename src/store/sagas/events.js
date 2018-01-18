@@ -12,3 +12,13 @@ export function* getEvents() {
     yield put(EventCreators.eventFailure());
   }
 }
+
+export function* deleteEvent(action) {
+  const response = yield call(api.delete, `/events/${action._id}`);
+
+  if (response.ok) {
+    yield put(EventCreators.eventDeleteSuccess(response.data));
+  } else {
+    yield put(EventCreators.eventDeleteFailure());
+  }
+}

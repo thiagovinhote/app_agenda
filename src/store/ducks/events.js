@@ -6,6 +6,10 @@ const { Types, Creators } = createActions({
   eventRequest: null,
   eventSuccess: ['data'],
   eventFailure: null,
+
+  eventDeleteRequest: ['_id'],
+  eventDeleteSuccess: ['data'],
+  eventDeleteFailure: null,
 });
 
 export { Types };
@@ -22,6 +26,7 @@ const INITIAL_STATE = {
 
 /* Reducers */
 
+/* Events */
 export const request = state => ({
   ...state,
   loading: true,
@@ -40,8 +45,31 @@ export const failure = () => ({
   error: true,
 });
 
+/* Delete */
+
+export const deleteRequest = state => ({
+  ...state,
+  loading: true,
+});
+
+export const deleteSuccess = (state, action) => ({
+  events: state.events.filter(e => e._id !== action.data._id),
+  loading: false,
+  error: false,
+});
+
+export const deleteFailure = state => ({
+  ...state,
+  loading: false,
+  error: true,
+});
+
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.EVENT_REQUEST]: request,
   [Types.EVENT_SUCCESS]: success,
   [Types.EVENT_FAILURE]: failure,
+
+  [Types.EVENT_DELETE_REQUEST]: deleteRequest,
+  [Types.EVENT_DELETE_SUCCESS]: deleteSuccess,
+  [Types.EVENT_DELETE_FAILURE]: deleteFailure,
 });

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View, ScrollView } from 'react-native';
+import { View } from 'react-native';
 import Header from 'components/Header';
 import EventList from 'pages/Calendar/components/EventList';
 

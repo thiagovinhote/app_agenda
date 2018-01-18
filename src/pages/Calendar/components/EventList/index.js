@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 /* Presentational */
 import { View, FlatList } from 'react-native';
-import EventItem from '../EventItem';
+import EventItemComponent, { EventItem } from '../EventItem';
 
 import styles from './styles';
 
@@ -14,7 +14,7 @@ class EventList extends Component {
   }
 
   renderItem = ({ item }) => (
-    <EventItem event={item} />
+    <EventItemComponent event={item} />
   );
 
   render() {
