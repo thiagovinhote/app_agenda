@@ -7,6 +7,7 @@ export default {
 
   success: '#49C7A7',
   danger: '#e35e5e',
+  info: '#5ECCE3',
   background: '#A55BD7',
 
   transparent: 'rgba(0, 0, 0, 0.5)',

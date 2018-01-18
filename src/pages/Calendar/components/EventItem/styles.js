@@ -3,7 +3,12 @@ import { metrics, colors } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: 'row',
     marginBottom: metrics.miniMargin,
+  },
+
+  infoContainer: {
+    flex: 1,
     borderRadius: metrics.baseRadius,
     padding: metrics.baseMargin,
     backgroundColor: colors.white,
@@ -26,6 +31,16 @@ const styles = StyleSheet.create({
 
   subtitle: {
     color: colors.regular,
+  },
+
+  buttonRight: {
+    marginLeft: metrics.miniMargin,
+    backgroundColor: colors.danger,
+  },
+
+  buttonLeft: {
+    marginRight: metrics.miniMargin,
+    backgroundColor: colors.info,
   },
 });
 
