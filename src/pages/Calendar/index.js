@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import Header from 'components/Header';
 import EventList from 'pages/Calendar/components/EventList';
 
@@ -17,7 +17,7 @@ class Calendar extends Component {
     eventRequest: PropTypes.func.isRequired,
     event: PropTypes.shape({
       loading: PropTypes.bool,
-      events: PropTypes.arrayOf(),
+      events: EventList.propTypes.events,
     }).isRequired,
   }
 

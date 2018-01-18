@@ -10,7 +10,7 @@ import styles from './styles';
 
 class EventList extends Component {
   static propTypes = {
-    events: PropTypes.arrayOf().isRequired,
+    events: PropTypes.arrayOf(EventItem.propTypes.event).isRequired,
   }
 
   renderItem = ({ item }) => (
@@ -21,7 +21,8 @@ class EventList extends Component {
     const { events } = this.props;
     return (
       <View style={styles.container}>
-        <FlatList
+        <FlatList 
+          showsVerticalScrollIndicator={false}
           style={styles.content}
           data={events}
           keyExtractor={i => i._id}

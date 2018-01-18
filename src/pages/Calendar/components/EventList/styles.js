@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    padding: metrics.baseMargin,
+    paddingHorizontal: metrics.baseMargin,
   },
 });
 
