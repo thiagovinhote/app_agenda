@@ -2,11 +2,15 @@ import { StyleSheet } from 'react-native';
 import { metrics, colors } from 'styles';
 
 const styles = StyleSheet.create({
-  button: {
-    padding: metrics.bigMargin,
+  container: {
+    width: 80,
     borderRadius: metrics.baseRadius,
+  },
+
+  button: {
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.regular,
   },
 
   icon: {

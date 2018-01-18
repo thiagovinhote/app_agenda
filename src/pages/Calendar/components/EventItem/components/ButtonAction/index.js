@@ -20,7 +20,7 @@ class ButtonAction extends Component {
   };
 
   state = {
-    offset: new Animated.ValueXY({ x: -50, y: 0 }),
+    offset: new Animated.ValueXY({ x: 0, y: 0 }),
   }
 
   componentDidMount() {
@@ -36,6 +36,9 @@ class ButtonAction extends Component {
     return (
       <Animated.View
         style={[
+          styles.container,
+          styles.danger,
+          style,
           {
             transform: [
               { translateX: this.state.offset.x },
@@ -48,8 +51,6 @@ class ButtonAction extends Component {
           activeOpacity={0.6}
           style={[
             styles.button,
-            styles.danger,
-            style,
           ]}
         >
           <Icon style={styles.icon} name={iconName} size={20} />

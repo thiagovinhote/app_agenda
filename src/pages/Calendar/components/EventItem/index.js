@@ -33,15 +33,20 @@ class EventItem extends Component {
       }]),
 
       onPanResponderRelease: () => {
-        if (this.state.offset.x._value < -200) {
-          this.setState({ buttonRight: true });
+        const { _value } = this.state.offset.x;
+        if (_value < -150 || _value > 150) {
+          if (_value < -150) {
+            this.setState({ buttonRight: true });
+          } else if (_value > 150) {
+            this.setState({ buttonLeft: true });
+          }
         }
+
         Animated.spring(this.state.offset.x, {
           toValue: 0,
           bounciness: 10,
         }).start();
       },
-
       onPanResponderTerminate: () => {
         Animated.spring(this.state.offset.x, {
           toValue: 0,
@@ -51,12 +56,15 @@ class EventItem extends Component {
     });
   }
 
+  hiddenButtons = () => this.setState({ buttonLeft: false, buttonRight: false });
+
   formateDate = dateString => new Date(dateString).getHours();
 
   render() {
     const { event } = this.props;
     return (
       <Animated.View
+        onTouchStart={this.hiddenButtons}
         {...this.panResponder.panHandlers}
         style={[
           styles.container,
