@@ -15,7 +15,7 @@ const Routes = StackNavigator({
   Account: { screen: Account },
 }, {
   headerMode: 'none',
-  initialRouteName: 'Account',
+  initialRouteName: 'Calendar',
 });
 
 export default Routes;
