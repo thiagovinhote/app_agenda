@@ -21,7 +21,7 @@ class EventList extends Component {
     const { events } = this.props;
     return (
       <View style={styles.container}>
-        <FlatList 
+        <FlatList
           showsVerticalScrollIndicator={false}
           style={styles.content}
           data={events}
