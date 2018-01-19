@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    width: 30,
-    height: 30,
+    width: 35,
+    height: 35,
     alignItems: 'center',
     justifyContent: 'center',
   },

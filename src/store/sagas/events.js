@@ -22,3 +22,14 @@ export function* deleteEvent(action) {
     yield put(EventCreators.eventDeleteFailure());
   }
 }
+
+export function* saveRequest(action) {
+  const event = { ...action.event, user: "5a5ea3880dbc2600145aaec4" };
+  const response = yield call(api.post, '/events', event);
+
+  if (response.ok) {
+    yield put(EventCreators.eventSaveSuccess(response.data));
+  } else {
+    yield put(EventCreators.eventSaveFailure());
+  }
+}

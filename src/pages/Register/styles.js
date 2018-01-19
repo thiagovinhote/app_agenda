@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   containerInput: {
     marginTop: 15,
     flexDirection: 'row',
-    backgroundColor: colors.backgroundDark,
+    backgroundColor: colors.darker,
     alignSelf: 'stretch',
     borderRadius: metrics.baseRadius,
     padding: metrics.mediumMargin,

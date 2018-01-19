@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   ...general,
 
   section: {
-    backgroundColor: colors.backgroundDark,
+    backgroundColor: colors.darker,
     padding: metrics.bigMargin,
     alignItems: 'center',
   },
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   separator: {
     marginTop: metrics.miniMargin,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: colors.backgroundDark,
+    backgroundColor: colors.darker,
   },
 
   content: {
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   containerInput: {
     marginTop: metrics.miniMargin,
     flexDirection: 'row',
-    backgroundColor: colors.backgroundDark,
+    backgroundColor: colors.darker,
     alignSelf: 'stretch',
     borderRadius: metrics.baseRadius,
     padding: metrics.mediumMargin,

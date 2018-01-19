@@ -6,9 +6,11 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import Header from 'components/Header';
 import EventList from 'pages/Calendar/components/EventList';
+import NewEvent from 'pages/Calendar/components/NewEvent';
 
 import { connect } from 'react-redux';
 import EventActions from 'store/ducks/events';
+import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
 
@@ -19,6 +21,11 @@ class Calendar extends Component {
       loading: PropTypes.bool,
       events: EventList.propTypes.events,
     }).isRequired,
+    dispatch: PropTypes.func.isRequired,
+  }
+
+  state = {
+    modalVisible: false,
   }
 
   componentDidMount() {
@@ -26,10 +33,39 @@ class Calendar extends Component {
     return eventRequest();
   }
 
+  actionLeft = () => {
+    this.setState({ modalVisible: true });
+  }
+
+  actionRight = () => {
+    const { dispatch } = this.props;
+    return dispatch(NavigationActions.navigate({
+      routeName: 'Account',
+    }));
+  }
+
+  closeModal = () => this.setState({ modalVisible: false })
+
   render() {
     return (
       <View style={styles.container}>
-        <Header />
+        <Header
+          propsLeft={{
+            iconName: 'plus',
+            onPress: this.actionLeft,
+            style: styles.headerLeft,
+          }}
+          propsRight={{
+            iconName: 'user',
+            onPress: this.actionRight,
+          }}
+        />
+        <NewEvent
+          animationType="fade"
+          visible={this.state.modalVisible}
+          close={this.closeModal}
+          transparent
+        />
         <EventList
           events={this.props.event.events}
         />
@@ -42,8 +78,9 @@ const mapStateToProps = state => ({
   event: state.event,
 });
 
-const mapDispatchToProps = dispatc => ({
-  eventRequest: () => dispatc(EventActions.eventRequest()),
+const mapDispatchToProps = dispatch => ({
+  eventRequest: () => dispatch(EventActions.eventRequest()),
+  dispatch,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar);

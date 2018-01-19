@@ -105,14 +105,14 @@ export class EventItem extends Component {
         >
           <View style={styles.topContainer}>
             <Text style={styles.title}>{ event.title }</Text>
-            <Text style={styles.hour}>{ `${this.formateDate(event.createAt)}h` }</Text>
+            <Text style={styles.hour}>{ `${this.formateDate(event.dateHour)}h` }</Text>
           </View>
           <Text style={styles.subtitle}>{ event.place }</Text>
         </View>
         { this.state.buttonRight &&
           <ButtonAction
             style={styles.buttonRight}
-            iconName="trash"
+            iconName="close"
             onPress={this.actionRight}
           /> }
       </Animated.View>

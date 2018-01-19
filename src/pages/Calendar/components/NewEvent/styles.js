@@ -8,36 +8,47 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: metrics.baseMargin,
+    backgroundColor: colors.backgroundTraparent,
+  },
+
+  box: {
+    borderRadius: metrics.baseRadius,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: metrics.baseMargin,
+    backgroundColor: colors.white,
   },
 
   title: {
-    color: colors.white,
-    fontSize: fonts.bigger,
-    fontWeight: '900',
-    letterSpacing: 3,
+    marginVertical: 50,
+    color: colors.background,
+    fontSize: fonts.bMedium,
+    fontWeight: 'bold',
+    marginBottom: metrics.bigMargin,
   },
 
   containerInput: {
-    marginTop: 64,
+    marginBottom: metrics.miniMargin,
     flexDirection: 'row',
-    backgroundColor: colors.darker,
+    backgroundColor: colors.light,
     alignSelf: 'stretch',
     borderRadius: metrics.baseRadius,
     padding: metrics.mediumMargin,
   },
 
   icon: {
-    color: colors.white,
+    color: colors.regular,
+    paddingRight: metrics.smallMargin,
   },
 
   input: {
     flex: 2,
-    paddingLeft: metrics.smallMargin,
-    color: colors.white,
+    color: colors.background,
   },
 
   button: {
-    marginTop: metrics.smallMargin,
+    marginTop: metrics.tinyMargin,
     padding: metrics.mediumMargin,
     alignSelf: 'stretch',
     alignItems: 'center',
@@ -49,6 +60,15 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: fonts.medium,
     fontWeight: 'bold',
+  },
+
+  buttonNeat: {
+    padding: metrics.mediumMargin,
+    marginBottom: metrics.bigMargin,
+  },
+
+  textNeat: {
+    color: colors.regular,
   },
 });
 

@@ -1,23 +1,42 @@
 /* Core */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 /* Presentational */
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Header from 'components/Header';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/* Redux */
+import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+
 import styles from './styles';
 
 class Account extends Component {
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+  }
+
   state = {
     password: '',
     confirmPassword: '',
   }
 
+  navigateBack = () => {
+    const { dispatch } = this.props;
+    return dispatch(NavigationActions.back());
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Header />
+        <Header
+          propsLeft={{
+            iconName: 'chevron-left',
+            onPress: this.navigateBack,
+          }}
+        />
         <View style={styles.section}>
           <Text style={styles.titleSection}>Minha Conta</Text>
         </View>
@@ -67,4 +86,4 @@ class Account extends Component {
   }
 }
 
-export default Account;
+export default connect()(Account);
