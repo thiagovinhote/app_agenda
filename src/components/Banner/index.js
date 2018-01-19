@@ -8,13 +8,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
 
-class Notification extends Component {
+class Banner extends Component {
   static propTypes = {
     message: PropTypes.string,
     loading: PropTypes.bool,
     show: PropTypes.bool,
     success: PropTypes.bool,
     danger: PropTypes.bool,
+    children: PropTypes.node,
   }
 
   static defaultProps = {
@@ -23,6 +24,7 @@ class Notification extends Component {
     success: false,
     danger: false,
     loading: false,
+    children: {},
   }
 
   touch = () => {
@@ -32,19 +34,24 @@ class Notification extends Component {
   renderMessage = () => {
     const { success, danger } = this.props;
     return (
-      <View
-        style={[
-          styles.container,
-          success ? styles.success : {},
-          danger ? styles.danger : {},
-        ]}
-        onTouchEnd={this.touch}
-      >
-        { success &&
-          <Icon style={styles.icon} name="check-circle" size={20} />}
-        { danger &&
-          <Icon style={styles.icon} name="times-circle" size={20} /> }
-        <Text style={styles.text}>{this.props.message}</Text>
+      <View style={styles.body}>
+
+        {this.props.children}
+
+        <View
+          style={[
+            styles.container,
+            success ? styles.success : {},
+            danger ? styles.danger : {},
+          ]}
+          onTouchEnd={this.touch}
+        >
+          { success &&
+            <Icon style={styles.icon} name="check-circle" size={20} />}
+          { danger &&
+            <Icon style={styles.icon} name="times-circle" size={20} /> }
+          <Text style={styles.text}>{this.props.message}</Text>
+        </View>
       </View>
     );
   }
@@ -68,4 +75,4 @@ class Notification extends Component {
   }
 }
 
-export default Notification;
+export default Banner;

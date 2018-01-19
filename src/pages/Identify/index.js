@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import Notification from 'components/Notification';
 
 /* Redux */
 import { connect } from 'react-redux';
@@ -26,13 +25,11 @@ class Identify extends Component {
 
   state = {
     phone: '',
-    show: false,
   }
 
   checkPhone = () => {
     const { authPhone } = this.props;
     const { phone } = this.state;
-    this.setState({ show: true });
 
     return authPhone(phone);
   }
@@ -41,11 +38,6 @@ class Identify extends Component {
     const { auth } = this.props;
     return (
       <View style={[styles.container, styles.content]} >
-        <Notification
-          show={this.state.show}
-          loading={auth.loading}
-        />
-
         <Text style={styles.title}>SCHEDULER</Text>
 
         <View style={styles.containerInput}>

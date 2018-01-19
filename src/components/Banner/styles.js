@@ -2,13 +2,19 @@ import { StyleSheet } from 'react-native';
 import { metrics, colors, fonts } from 'styles';
 
 const styles = StyleSheet.create({
+  body: {
+    flex: 1,
+  },
+
   container: {
+    height: metrics.navBarHeight + metrics.statusBarHeight,
     flexDirection: 'row',
     position: 'absolute',
     width: metrics.screenWidth,
     top: 0,
     padding: 22,
     justifyContent: 'center',
+    alignItems: 'center',
   },
 
   success: {
