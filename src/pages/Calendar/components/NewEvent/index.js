@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View, Text, Modal, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Modal, TextInput, TouchableOpacity, Keyboard } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 /* Redux */
 import { connect } from 'react-redux';
@@ -19,16 +20,35 @@ class NewEvent extends Component {
     }
 
     state = {
-      dateHour: '',
-      title: '',
-      place: '',
+      event: {
+        dateHour: '',
+        title: '',
+        place: '',
+      },
+      pickerVisible: false,
     }
 
     save = () => {
-      const event = this.state;
+      const { event } = this.state;
       const { eventSaveRequest, close } = this.props;
       close();
+      this.setState({
+        event: {
+          dateHour: '',
+          title: '',
+          place: '',
+        },
+      });
       return eventSaveRequest(event);
+    }
+
+    showPicker = () => this.setState({ pickerVisible: true });
+
+    hiddenPicker = () => this.setState({ pickerVisible: false });
+
+    changePicker = (date) => {
+      this.state.event.dateHour = date;
+      this.hiddenPicker();
     }
 
     render() {
@@ -46,7 +66,17 @@ class NewEvent extends Component {
                   placeholder="Selecione data e horário"
                   style={styles.input}
                   placeholderTextColor="#999999"
-                  onChangeText={t => this.setState({ dateHour: t })}
+                  value={this.state.event.dateHour.toString()}
+                  onTouchStart={this.showPicker}
+                  underlineColorAndroid="transparent"
+                  onFocus={Keyboard.dismiss}
+                />
+
+                <DateTimePicker
+                  mode="datetime"
+                  isVisible={this.state.pickerVisible}
+                  onConfirm={this.changePicker}
+                  onCancel={this.hiddenPicker}
                 />
               </View>
 
@@ -55,7 +85,7 @@ class NewEvent extends Component {
                   placeholder="Qual o nome do evento?"
                   style={styles.input}
                   placeholderTextColor="#999999"
-                  onChangeText={t => this.setState({ title: t })}
+                  onChangeText={(t) => { this.state.event.title = t }}
                 />
               </View>
 
@@ -64,7 +94,7 @@ class NewEvent extends Component {
                   placeholder="Onde irá ocorrer?"
                   style={styles.input}
                   placeholderTextColor="#999999"
-                  onChangeText={t => this.setState({ place: t })}
+                  onChangeText={(t) => { this.state.event.place = t }}
                 />
               </View>
 
