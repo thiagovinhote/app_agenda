@@ -7,7 +7,7 @@ import React from 'react';
 /* Navigation */
 import NavigatorComponent from 'navigation';
 
-import Banner from 'components/Banner';
+import BannerComponent from 'components/Banner';
 
 /* Store */
 import { Provider } from 'react-redux';
@@ -17,13 +17,9 @@ const store = create();
 
 const App = () => (
   <Provider store={store}>
-    <Banner
-      show
-      success
-      message="Mensagem"
-    >
+    <BannerComponent>
       <NavigatorComponent />
-    </Banner>
+    </BannerComponent>
   </Provider>
 );
 

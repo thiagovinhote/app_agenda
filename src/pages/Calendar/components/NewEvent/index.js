@@ -26,7 +26,8 @@ class NewEvent extends Component {
 
     save = () => {
       const event = this.state;
-      const { eventSaveRequest } = this.props;
+      const { eventSaveRequest, close } = this.props;
+      close();
       return eventSaveRequest(event);
     }
 

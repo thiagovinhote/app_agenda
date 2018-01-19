@@ -28,6 +28,9 @@ class Account extends Component {
     return dispatch(NavigationActions.back());
   }
 
+  update = () => {
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -76,7 +79,7 @@ class Account extends Component {
           <TouchableOpacity
             activeOpacity={0.6}
             style={styles.button}
-            onPress={this.checkPhone}
+            onPress={this.update}
           >
             <Text style={styles.text}>Alterar informações</Text>
           </TouchableOpacity>
