@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text, ActivityIndicator } from 'react-native';
 import EventItemComponent, { EventItem } from '../EventItem';
 
 import styles from './styles';
@@ -11,6 +11,7 @@ import styles from './styles';
 class EventList extends Component {
   static propTypes = {
     events: PropTypes.arrayOf(EventItem.propTypes.event).isRequired,
+    loading: PropTypes.bool.isRequired,
   }
 
   renderItem = ({ item, index }) => (
@@ -20,17 +21,34 @@ class EventList extends Component {
     />
   );
 
+  renderList = () => (
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      style={styles.content}
+      data={this.props.events}
+      keyExtractor={i => i._id}
+      renderItem={this.renderItem}
+    />
+  );
+
+  renderContent = () => (
+    this.props.events.length === 0
+      ? this.renderEmpty()
+      : this.renderList()
+  );
+
+  renderEmpty = () => (
+    <Text style={styles.textEmpty}>Sem eventos para este dia</Text>
+  )
+
   render() {
-    const { events } = this.props;
     return (
       <View style={styles.container}>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          style={styles.content}
-          data={events}
-          keyExtractor={i => i._id}
-          renderItem={this.renderItem}
-        />
+        {
+          !this.props.loading
+            ? this.renderContent()
+            : <ActivityIndicator size="small" color="#FFF" />
+        }
       </View>
     );
   }

@@ -8,8 +8,9 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(() => resolve(true), ms));
 }
 
-export function* getEvents() {
-  const response = yield call(api.get, '/events');
+export function* getEvents(action) {
+  const path = `/events?date=${action.date.toString('yyyy-MM-dd')}`;
+  const response = yield call(api.get, path);
 
   if (response.ok) {
     yield put(EventCreators.eventSuccess(response.data));

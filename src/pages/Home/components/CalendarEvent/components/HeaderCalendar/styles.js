@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 
   title: {
     color: colors.white,
-    fontSize: fonts.big,
+    fontSize: fonts.bMedium,
     fontWeight: 'bold',
   },
 

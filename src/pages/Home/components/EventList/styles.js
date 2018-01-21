@@ -1,17 +1,20 @@
 import { StyleSheet } from 'react-native';
-import { metrics } from 'styles';
+import { metrics, fonts, colors } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: metrics.baseMargin,
   },
 
   content: {
     paddingHorizontal: metrics.baseMargin,
   },
 
-  firstItem: {
-    marginTop: metrics.miniMargin,
+  textEmpty: {
+    textAlign: 'center',
+    fontSize: fonts.medium,
+    color: colors.white,
   },
 });
 

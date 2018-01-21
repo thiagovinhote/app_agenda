@@ -22,7 +22,15 @@ XDate.defaultLocale = 'pt-br';
 
 class CalendarEvent extends Component {
   static propTypes = {
-    pressDay: PropTypes.func.isRequired,
+    pressDay: PropTypes.func,
+    expanded: PropTypes.bool,
+    onCurrent: PropTypes.func,
+  }
+
+  static defaultProps = {
+    expanded: true,
+    pressDay: () => {},
+    onCurrent: () => {},
   }
 
   constructor() {
@@ -33,24 +41,43 @@ class CalendarEvent extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.onCurrent(this.state.currentMonth);
+  }
+
   pressDay = (date) => {
     const day = parseDate(date);
     this.setState({ selected: day });
     this.updateMonth(day);
     this.props.pressDay(day);
+
+    this.props.onCurrent(day);
   }
 
   updateMonth = (day) => {
-    if (day.toString('yyyy MM') === this.state.currentMonth.toString('yyyy MM')) {
-      return;
+    if (this.props.expanded) {
+      if (day.toString('yyyy MM') === this.state.currentMonth.toString('yyyy MM')) {
+        return;
+      }
     }
     this.setState({
       currentMonth: day.clone(),
     });
   }
 
+  dayRelease = (count) => {
+    const next = this.state.currentMonth.clone().addDays(count, true);
+    this.setState({ selected: next });
+    this.updateMonth(next);
+
+    this.props.onCurrent(next);
+  }
+
   monthRelease = (count) => {
-    this.updateMonth(this.state.currentMonth.clone().addMonths(count, true));
+    const next = this.state.currentMonth.clone().addMonths(count, true);
+    this.updateMonth(next);
+
+    this.props.onCurrent(next);
   }
 
   renderDay(day, id) {
@@ -95,12 +122,16 @@ class CalendarEvent extends Component {
       <View style={styles.container}>
         <HeaderCalendar
           month={this.state.currentMonth}
+          dayRelease={this.dayRelease}
           monthRelease={this.monthRelease}
           monthFormat="MMMM / yy"
+          mini={!this.props.expanded}
         />
-        <View style={styles.content}>
-          {weeks}
-        </View>
+        { this.props.expanded &&
+          <View style={styles.content}>
+            {weeks}
+          </View>
+        }
       </View>
     );
   }

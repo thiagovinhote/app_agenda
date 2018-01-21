@@ -1,5 +1,5 @@
 /* Core */
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { weekDayNames } from 'utils/dateutils';
 
@@ -9,47 +9,68 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import styles from './styles';
 
-const HeaderCalendar = props => (
-  <View>
-    <View style={styles.containerHeader}>
+class HeaderCalendar extends Component {
+  static propTypes = {
+    monthRelease: PropTypes.func.isRequired,
+    dayRelease: PropTypes.func.isRequired,
+    monthFormat: PropTypes.string,
+    month: PropTypes.shape().isRequired,
+    mini: PropTypes.bool,
+  };
 
-      <TouchableOpacity
-        style={styles.button}
-        activeOpacity={0.6}
-        onPress={() => props.monthRelease(-1)}
-      >
-        <Icon style={styles.icon} name="chevron-left" size={25} />
-      </TouchableOpacity>
+  static defaultProps = {
+    monthFormat: 'MMMM yyyy',
+    mini: false,
+  };
 
-      <Text style={styles.title}>
-        {props.month.toString(props.monthFormat ? props.monthFormat : 'MMMM yyyy')}
-      </Text>
+  arrowLeft = () => {
+    const next = this.props.mini ? this.props.dayRelease : this.props.monthRelease;
+    next(-1);
+  }
 
-      <TouchableOpacity
-        style={styles.button}
-        activeOpacity={0.6}
-        onPress={() => props.monthRelease(1)}
-      >
-        <Icon style={styles.icon} name="chevron-right" size={25} />
-      </TouchableOpacity>
-    </View>
+  arrowRight = () => {
+    const next = this.props.mini ? this.props.dayRelease : this.props.monthRelease;
+    next(1);
+  }
 
-    <View style={styles.week}>
-      {weekDayNames().map(day => (
-        <Text key={day} style={styles.dayHeader} numberOfLines={1}>{day}</Text>
-      ))}
-    </View>
-  </View>
-);
+  render() {
+    const { month, mini, monthFormat } = this.props;
+    const format = !mini ? monthFormat : 'dddd, dd De MMM';
+    return (
+      <View>
+        <View style={styles.containerHeader}>
 
-HeaderCalendar.propTypes = {
-  monthRelease: PropTypes.func.isRequired,
-  monthFormat: PropTypes.string,
-  month: PropTypes.shape().isRequired,
-};
+          <TouchableOpacity
+            style={styles.button}
+            activeOpacity={0.6}
+            onPress={this.arrowLeft}
+          >
+            <Icon style={styles.icon} name="chevron-left" size={25} />
+          </TouchableOpacity>
 
-HeaderCalendar.defaultProps = {
-  monthFormat: '',
-};
+          <Text style={styles.title}>
+            {month.toString(format)}
+          </Text>
+
+          <TouchableOpacity
+            style={styles.button}
+            activeOpacity={0.6}
+            onPress={this.arrowRight}
+          >
+            <Icon style={styles.icon} name="chevron-right" size={25} />
+          </TouchableOpacity>
+        </View>
+
+        { !mini &&
+          <View style={styles.week}>
+            {weekDayNames().map(day => (
+              <Text key={day} style={styles.dayHeader} numberOfLines={1}>{day}</Text>
+            ))}
+          </View>
+        }
+      </View>
+    );
+  }
+}
 
 export default HeaderCalendar;

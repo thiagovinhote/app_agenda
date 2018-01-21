@@ -27,15 +27,30 @@ class Home extends Component {
 
   state = {
     modalVisible: false,
-  }
-
-  componentDidMount() {
-    const { eventRequest } = this.props;
-    return eventRequest();
+    expandedCalendar: true,
   }
 
   onPressDay = (day) => {
-    console.tron.log(day);
+    const { eventRequest } = this.props;
+    return eventRequest(day);
+  }
+
+  onScroll = (event) => {
+    const { y } = event.nativeEvent.contentOffset;
+    // console.tron.log(event.nativeEvent);
+    if (y > 0) {
+      this.setState({
+        expandedCalendar: false,
+      });
+    } else if (y < -50) {
+      this.setState({
+        expandedCalendar: true,
+      });
+    }
+  }
+
+  onCurrent = (day) => {
+    this.onPressDay(day);
   }
 
   actionLeft = () => {
@@ -66,16 +81,19 @@ class Home extends Component {
           }}
         />
 
+        <CalendarEvent
+          onCurrent={this.onCurrent}
+          expanded={this.state.expandedCalendar}
+        />
+
         <ScrollView
+          onScrollEndDrag={this.onScroll}
           showsVerticalScrollIndicator={false}
         >
-          <CalendarEvent
-            pressDay={this.onPressDay}
-          />
-
           <EventList
             style={styles.listContent}
             events={this.props.event.events}
+            loading={this.props.event.loading}
           />
         </ScrollView>
 
@@ -95,7 +113,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  eventRequest: () => dispatch(EventActions.eventRequest()),
+  eventRequest: date => dispatch(EventActions.eventRequest(date)),
   dispatch,
 });
 

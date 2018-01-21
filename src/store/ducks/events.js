@@ -3,7 +3,7 @@ import { createActions, createReducer } from 'reduxsauce';
 /* Types & Creator */
 
 const { Types, Creators } = createActions({
-  eventRequest: null,
+  eventRequest: ['date'],
   eventSuccess: ['data'],
   eventFailure: null,
 
@@ -31,8 +31,8 @@ const INITIAL_STATE = {
 /* Reducers */
 
 /* Events */
-export const request = state => ({
-  ...state,
+export const request = () => ({
+  events: [],
   loading: true,
   error: false,
 });
