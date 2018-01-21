@@ -31,6 +31,9 @@ class Account extends Component {
   update = () => {
   }
 
+  logout = () => {
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -82,6 +85,14 @@ class Account extends Component {
             onPress={this.update}
           >
             <Text style={styles.text}>Alterar informações</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.6}
+            style={[styles.button, styles.buttonLogout]}
+            onPress={this.logout}
+          >
+            <Text style={styles.text}>Sair</Text>
           </TouchableOpacity>
         </View>
       </View>

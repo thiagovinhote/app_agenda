@@ -55,6 +55,10 @@ const styles = StyleSheet.create({
     borderRadius: metrics.baseRadius,
   },
 
+  buttonLogout: {
+    backgroundColor: colors.danger,
+  },
+
   text: {
     color: colors.white,
     fontSize: fonts.medium,
