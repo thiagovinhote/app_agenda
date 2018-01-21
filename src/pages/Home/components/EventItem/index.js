@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View, Text, PanResponder, Animated } from 'react-native';
+import { View, Text, PanResponder, Animated, Share } from 'react-native';
 import ButtonAction from 'pages/Home/components/EventItem/components/ButtonAction';
 
 /* Redux */
@@ -75,8 +75,17 @@ export class EventItem extends Component {
 
   formateDate = dateString => new Date(dateString).getHours();
 
-  actionLeft = () => {
+  actionLeft = async () => {
+    const { event } = this.props;
+    const message = `${event.place}! ${event.dateHour}`;
 
+    const res = await Share.share({
+      title: event.title,
+      message,
+    }, {
+      dialogTitle: 'Compartilhar evento',
+    });
+    return res;
   }
 
   actionRight = () => {
