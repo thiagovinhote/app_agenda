@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 /* Presentational */
 import { View, Text, PanResponder, Animated } from 'react-native';
-import ButtonAction from 'pages/Calendar/components/EventItem/components/ButtonAction';
+import ButtonAction from 'pages/Home/components/EventItem/components/ButtonAction';
 
 /* Redux */
 import { connect } from 'react-redux';
@@ -20,7 +20,12 @@ export class EventItem extends Component {
       place: PropTypes.string,
     }).isRequired,
     eventDeleteRequest: PropTypes.func.isRequired,
+    style: View.propTypes.style,
   };
+
+  static defaultProps = {
+    style: {},
+  }
 
   state = {
     buttonLeft: false,
@@ -80,12 +85,13 @@ export class EventItem extends Component {
   }
 
   render() {
-    const { event } = this.props;
+    const { event, style } = this.props;
     return (
       <Animated.View
         {...this.panResponder.panHandlers}
         style={[
           styles.container,
+          style,
           {
             transform: [
               ...this.state.offset.getTranslateTransform(),

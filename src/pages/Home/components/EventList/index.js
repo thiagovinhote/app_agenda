@@ -13,8 +13,11 @@ class EventList extends Component {
     events: PropTypes.arrayOf(EventItem.propTypes.event).isRequired,
   }
 
-  renderItem = ({ item }) => (
-    <EventItemComponent event={item} />
+  renderItem = ({ item, index }) => (
+    <EventItemComponent
+      style={index === 0 ? styles.firstItem : {}}
+      event={item}
+    />
   );
 
   render() {

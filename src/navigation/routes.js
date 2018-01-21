@@ -3,7 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import Identify from 'pages/Identify';
 import Register from 'pages/Register';
 import Login from 'pages/Login';
-import Calendar from 'pages/Calendar';
+import Home from 'pages/Home';
 import Account from 'pages/Account';
 
 const Routes = StackNavigator({
@@ -11,11 +11,11 @@ const Routes = StackNavigator({
   Login: { screen: Login },
   Register: { screen: Register },
 
-  Calendar: { screen: Calendar },
+  Home: { screen: Home },
   Account: { screen: Account },
 }, {
   headerMode: 'none',
-  initialRouteName: 'Calendar',
+  initialRouteName: 'Home',
 });
 
 export default Routes;

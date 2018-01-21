@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import Header from 'components/Header';
-import EventList from 'pages/Calendar/components/EventList';
-import NewEvent from 'pages/Calendar/components/NewEvent';
+import EventList from 'pages/Home/components/EventList';
+import NewEvent from 'pages/Home/components/NewEvent';
+import CalendarEvent from 'pages/Home/components/CalendarEvent';
 
 import { connect } from 'react-redux';
 import EventActions from 'store/ducks/events';
@@ -14,7 +15,7 @@ import { NavigationActions } from 'react-navigation';
 
 import styles from './styles';
 
-class Calendar extends Component {
+class Home extends Component {
   static propTypes = {
     eventRequest: PropTypes.func.isRequired,
     event: PropTypes.shape({
@@ -31,6 +32,10 @@ class Calendar extends Component {
   componentDidMount() {
     const { eventRequest } = this.props;
     return eventRequest();
+  }
+
+  onPressDay = (day) => {
+    console.tron.log(day);
   }
 
   actionLeft = () => {
@@ -60,14 +65,25 @@ class Calendar extends Component {
             onPress: this.actionRight,
           }}
         />
+
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+        >
+          <CalendarEvent
+            pressDay={this.onPressDay}
+          />
+
+          <EventList
+            style={styles.listContent}
+            events={this.props.event.events}
+          />
+        </ScrollView>
+
         <NewEvent
           animationType="fade"
           visible={this.state.modalVisible}
           close={this.closeModal}
           transparent
-        />
-        <EventList
-          events={this.props.event.events}
         />
       </View>
     );
@@ -83,4 +99,4 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

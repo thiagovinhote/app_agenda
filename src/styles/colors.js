@@ -1,5 +1,5 @@
 export default {
-  white: '#FFF',
+  white: '#FFFFFF',
   green: '#49C7A7',
   dark: '#333333',
   regular: '#999999',
@@ -15,4 +15,6 @@ export default {
   backgroundTraparent: 'rgba(0, 0, 0, 0.6)',
 
   transparent: 'rgba(0, 0, 0, 0.5)',
+
+  clear: 'rgba(0, 0, 0, 0.0)',
 };

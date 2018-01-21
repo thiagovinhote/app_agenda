@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: metrics.baseMargin,
   },
+
+  firstItem: {
+    marginTop: metrics.miniMargin,
+  },
 });
 
 export default styles;
