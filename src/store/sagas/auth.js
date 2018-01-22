@@ -27,8 +27,13 @@ export function* authAuthenticate(action) {
   const response = yield call(api.post, '/auth/authenticate', data);
 
   if (response.ok) {
-    yield put(NavigationActions.navigate({
-      routeName: 'Calendar',
+    yield put(NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({
+          routeName: 'Home',
+        }),
+      ],
     }));
     yield put(ActionCreators.authAuthenticateSuccess(response.data));
   } else {

@@ -15,7 +15,7 @@ const Routes = StackNavigator({
   Account: { screen: Account },
 }, {
   headerMode: 'none',
-  initialRouteName: 'Home',
+  initialRouteName: 'Identify',
 });
 
 export default Routes;

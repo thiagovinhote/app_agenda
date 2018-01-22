@@ -49,7 +49,6 @@ class Login extends Component {
 
   render() {
     const { phone } = this.props.navigation.state.params;
-    const { auth } = this.props;
     return (
       <View style={[styles.container, styles.content]} >
 
