@@ -45,6 +45,29 @@ export function* authAuthenticate(action) {
   }
 }
 
+export function* authRegister(action) {
+  const { data } = action;
+  const response = yield call(api.post, '/auth/register', data);
+
+  const { data: { token } } = response;
+
+  setAuthorization(token);
+
+  if (response.ok) {
+    yield put(NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({
+          routeName: 'Home',
+        }),
+      ],
+    }));
+    yield put(ActionCreators.authRegisterSuccess(response.data));
+  } else {
+    yield put(ActionCreators.authRegisterFailure());
+  }
+}
+
 export function* signOut() {
   setAuthorization(null);
   yield put(NavigationActions.reset({

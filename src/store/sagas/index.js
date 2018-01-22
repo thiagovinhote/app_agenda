@@ -5,13 +5,14 @@ import { Types as AuthTypes } from 'store/ducks/auth';
 import { Types as EventTypes } from 'store/ducks/events';
 
 /* Sagas */
-import { authPhone, authAuthenticate, signOut } from './auth';
+import { authPhone, authAuthenticate, authRegister, signOut } from './auth';
 import { getEvents, deleteEvent, saveRequest } from './events';
 
 export default function* root() {
   yield [
     takeLatest(AuthTypes.AUTH_PHONE_REQUEST, authPhone),
     takeLatest(AuthTypes.AUTH_AUTHENTICATE_REQUEST, authAuthenticate),
+    takeLatest(AuthTypes.AUTH_REGISTER_REQUEST, authRegister),
 
     takeLatest(AuthTypes.AUTH_SIGN_OUT, signOut),
 
