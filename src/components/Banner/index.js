@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Fade from 'components/Fade';
 
@@ -36,26 +36,28 @@ class Banner extends Component {
   render() {
     const { show, message, model } = this.props.notification;
     return (
-      <View style={styles.body}>
+      <SafeAreaView style={styles.safe}>
+        <View style={styles.body}>
 
-        {this.props.children}
+          {this.props.children}
 
-        <Fade visible={show} style={styles.container}>
-          <View
-            style={[
-              styles.container,
-              styles[model],
-            ]}
-            onTouchEnd={this.touch}
-          >
-            { model === 'success' &&
-              <Icon style={styles.icon} name="check-circle" size={20} />}
-            { model === 'danger' &&
-              <Icon style={styles.icon} name="times-circle" size={20} /> }
-            <Text style={styles.text}>{message}</Text>
-          </View>
-        </Fade>
-      </View>
+          <Fade visible={show} style={styles.container}>
+            <View
+              style={[
+                styles.container,
+                styles[model],
+              ]}
+              onTouchEnd={this.touch}
+            >
+              { model === 'success' &&
+                <Icon style={styles.icon} name="check-circle" size={20} />}
+              { model === 'danger' &&
+                <Icon style={styles.icon} name="times-circle" size={20} /> }
+              <Text style={styles.text}>{message}</Text>
+            </View>
+          </Fade>
+        </View>
+      </SafeAreaView>
     );
   }
 }

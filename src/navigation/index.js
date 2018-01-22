@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { SafeAreaView } from 'react-native';
-
 import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 
 import { setAuthorization } from 'services/api';
 
 import Routes from './routes';
-import styles from './styles';
 
 class Navigator extends Component {
   static propTypes = {
@@ -29,14 +26,12 @@ class Navigator extends Component {
   render() {
     const { dispatch, nav } = this.props;
     return (
-      <SafeAreaView style={styles.container}>
-        <Routes
-          navigation={addNavigationHelpers({
-            dispatch,
-            state: nav,
-          })}
-        />
-      </SafeAreaView>
+      <Routes
+        navigation={addNavigationHelpers({
+          dispatch,
+          state: nav,
+        })}
+      />
     );
   }
 }

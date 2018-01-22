@@ -2,6 +2,11 @@ import { StyleSheet } from 'react-native';
 import { metrics, colors, fonts } from 'styles';
 
 const styles = StyleSheet.create({
+  safe: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+
   body: {
     flex: 1,
   },

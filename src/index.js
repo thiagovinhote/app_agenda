@@ -6,7 +6,6 @@ import React from 'react';
 
 /* Navigation */
 import NavigatorComponent from 'navigation';
-
 import BannerComponent from 'components/Banner';
 
 /* Store */
