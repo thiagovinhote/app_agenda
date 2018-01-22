@@ -14,6 +14,8 @@ const { Types, Creators } = createActions({
   authAuthenticateRequest: ['data'],
   authAuthenticateSuccess: ['user'],
   authAuthenticateFailure: null,
+
+  authSignOut: null,
 });
 
 export { Types };
@@ -99,6 +101,11 @@ export const authenticateFailure = () => ({
   loading: false,
 });
 
+export const signOut = state => ({
+  ...state,
+  user: null,
+});
+
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.AUTH_PHONE_REQUEST]: phoneRequest,
   [Types.AUTH_PHONE_SUCCESS]: phoneSuccess,
@@ -111,4 +118,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.AUTH_AUTHENTICATE_REQUEST]: authenticateRequest,
   [Types.AUTH_AUTHENTICATE_SUCCESS]: authenticateSuccess,
   [Types.AUTH_AUTHENTICATE_FAILURE]: authenticateFailure,
+
+  [Types.AUTH_SIGN_OUT]: signOut,
 });

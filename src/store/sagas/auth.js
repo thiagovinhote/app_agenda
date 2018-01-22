@@ -1,4 +1,4 @@
-import api from 'services/api';
+import api, { setAuthorization } from 'services/api';
 
 import { call, put } from 'redux-saga/effects';
 import ActionCreators from 'store/ducks/auth';
@@ -26,6 +26,10 @@ export function* authAuthenticate(action) {
   const { data } = action;
   const response = yield call(api.post, '/auth/authenticate', data);
 
+  const { data: { token } } = response;
+
+  setAuthorization(token);
+
   if (response.ok) {
     yield put(NavigationActions.reset({
       index: 0,
@@ -39,4 +43,16 @@ export function* authAuthenticate(action) {
   } else {
     yield put(ActionCreators.authAuthenticateFailure());
   }
+}
+
+export function* signOut() {
+  setAuthorization(null);
+  yield put(NavigationActions.reset({
+    index: 0,
+    actions: [
+      NavigationActions.navigate({
+        routeName: 'Identify',
+      }),
+    ],
+  }));
 }

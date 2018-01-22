@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 /* Redux */
@@ -49,6 +49,7 @@ class Login extends Component {
 
   render() {
     const { phone } = this.props.navigation.state.params;
+    const { auth } = this.props;
     return (
       <View style={[styles.container, styles.content]} >
 
@@ -79,8 +80,11 @@ class Login extends Component {
           activeOpacity={0.6}
           style={styles.button}
           onPress={this.authenticate}
+          disabled={auth.loading}
         >
-          <Text style={styles.text}>Entrar</Text>
+          { auth.loading
+            ? <ActivityIndicator size="small" color="#FFF" />
+            : <Text style={styles.text}>Entrar</Text>}
         </TouchableOpacity>
 
         <TouchableOpacity

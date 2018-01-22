@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -28,9 +28,10 @@ class Identify extends Component {
   }
 
   checkPhone = () => {
-    const { authPhone } = this.props;
     const { phone } = this.state;
+    if (phone.length === 0) return false;
 
+    const { authPhone } = this.props;
     return authPhone(phone);
   }
 
@@ -54,8 +55,11 @@ class Identify extends Component {
           activeOpacity={0.6}
           style={styles.button}
           onPress={this.checkPhone}
+          disabled={auth.loading}
         >
-          <Text style={styles.text}>Entrar</Text>
+          { auth.loading
+            ? <ActivityIndicator size="small" color="#FFF" />
+            : <Text style={styles.text}>Entrar</Text> }
         </TouchableOpacity>
       </View>
     );

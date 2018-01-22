@@ -35,7 +35,7 @@ export function* deleteEvent(action) {
 }
 
 export function* saveRequest(action) {
-  const event = { ...action.event, user: "5a5ea3880dbc2600145aaec4" };
+  const { event } = action;
   const response = yield call(api.post, '/events', event);
 
   if (response.ok) {

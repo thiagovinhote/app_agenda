@@ -10,12 +10,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 /* Redux */
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import AuthActions from 'store/ducks/auth';
 
 import styles from './styles';
 
 class Account extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    signOut: PropTypes.func.isRequired,
   }
 
   state = {
@@ -32,6 +34,8 @@ class Account extends Component {
   }
 
   logout = () => {
+    const { signOut } = this.props;
+    return signOut();
   }
 
   render() {
@@ -100,4 +104,9 @@ class Account extends Component {
   }
 }
 
-export default connect()(Account);
+const mapDispatchToProps = dispatch => ({
+  signOut: () => dispatch(AuthActions.authSignOut()),
+  dispatch,
+});
+
+export default connect(null, mapDispatchToProps)(Account);

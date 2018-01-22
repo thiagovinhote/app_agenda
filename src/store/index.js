@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-
 /* Reducers */
 import navReducers from 'navigation/reducer';
 import { reducer as auth } from './ducks/auth';
@@ -10,11 +8,11 @@ import configureStore from './configureStore';
 import rootSaga from './sagas';
 
 export default () => {
-  const rootReducers = combineReducers({
+  const reducers = {
     nav: navReducers,
     auth,
     event,
     notification,
-  });
-  return configureStore(rootReducers, rootSaga);
+  };
+  return configureStore(reducers, rootSaga);
 };

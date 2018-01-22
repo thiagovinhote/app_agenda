@@ -11,15 +11,18 @@ import BannerComponent from 'components/Banner';
 
 /* Store */
 import { Provider } from 'react-redux';
-import create from './store';
+import { PersistGate } from 'redux-persist/es/integration/react';
+import configureStore from './store';
 
-const store = create();
+const { store, persistor } = configureStore();
 
 const App = () => (
   <Provider store={store}>
-    <BannerComponent>
-      <NavigatorComponent />
-    </BannerComponent>
+    <PersistGate persistor={persistor}>
+      <BannerComponent>
+        <NavigatorComponent />
+      </BannerComponent>
+    </PersistGate>
   </Provider>
 );
 
