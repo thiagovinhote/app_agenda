@@ -21,5 +21,8 @@ export default {
   orangeLighter: '#F78863',
   greenLighter: '#7AB1C2',
   grayLighter: '#D6D6DB',
+  purpleLighter: '#8A78C5',
+  pinkLighter: '#DD5F8E',
+  yellowLighter: '#FDC65B',
 
 };

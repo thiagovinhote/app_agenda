@@ -73,7 +73,16 @@ export class EventItem extends Component {
 
   hiddenButtons = () => this.setState({ buttonLeft: false, buttonRight: false });
 
-  formateDate = dateString => new Date(dateString).getHours();
+  formateDate = (dateString) => {
+    const date = new Date(dateString);
+    const hours = date.getHours();
+    let minutes = date.getMinutes();
+
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+
+    const format = `${hours}:${minutes}`;
+    return format;
+  }
 
   actionLeft = async () => {
     const { event } = this.props;
@@ -109,27 +118,30 @@ export class EventItem extends Component {
         ]}
       >
         { this.state.buttonLeft &&
-          <ButtonAction
-            style={styles.buttonLeft}
-            iconName="share"
-            onPress={this.actionLeft}
-          /> }
+          <View style={styles.buttons}>
+            <ButtonAction
+              style={styles.buttonRight}
+              iconName="close"
+              onPress={this.actionRight}
+            />
+            <ButtonAction
+              style={styles.buttonLeft}
+              iconName="share"
+              onPress={this.actionLeft}
+            />
+          </View>
+        }
         <View
-          onTouchStart={this.hiddenButtons}
           style={styles.infoContainer}
         >
-          <View style={styles.topContainer}>
+          <View style={styles.detailContainer}>
             <Text style={styles.title}>{ event.title }</Text>
-            <Text style={styles.hour}>{ `${this.formateDate(event.dateHour)}h` }</Text>
+            <Text style={styles.subtitle}>{ event.place }</Text>
           </View>
-          <Text style={styles.subtitle}>{ event.place }</Text>
+          <View style={styles.containerHour}>
+            <Text style={styles.hour}>{ `${this.formateDate(event.dateHour)}` }</Text>
+          </View>
         </View>
-        { this.state.buttonRight &&
-          <ButtonAction
-            style={styles.buttonRight}
-            iconName="close"
-            onPress={this.actionRight}
-          /> }
       </Animated.View>
     );
   }

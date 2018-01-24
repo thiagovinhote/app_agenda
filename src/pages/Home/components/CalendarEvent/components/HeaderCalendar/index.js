@@ -37,7 +37,7 @@ class HeaderCalendar extends Component {
     const { month, mini, monthFormat } = this.props;
     const format = !mini ? monthFormat : 'dddd, dd De MMM';
     return (
-      <View>
+      <View style={styles.box}>
         <View style={styles.containerHeader}>
 
           <TouchableOpacity
@@ -45,7 +45,7 @@ class HeaderCalendar extends Component {
             activeOpacity={0.6}
             onPress={this.arrowLeft}
           >
-            <Icon style={styles.icon} name="chevron-left" size={25} />
+            <Icon style={styles.icon} name="chevron-left" />
           </TouchableOpacity>
 
           <Text style={styles.title}>
@@ -57,7 +57,7 @@ class HeaderCalendar extends Component {
             activeOpacity={0.6}
             onPress={this.arrowRight}
           >
-            <Icon style={styles.icon} name="chevron-right" size={25} />
+            <Icon style={styles.icon} name="chevron-right" />
           </TouchableOpacity>
         </View>
 
@@ -68,6 +68,7 @@ class HeaderCalendar extends Component {
             ))}
           </View>
         }
+        <View style={styles.borderBottom} />
       </View>
     );
   }

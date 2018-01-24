@@ -4,7 +4,7 @@ import { metrics, colors, fonts } from 'styles';
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.greenLighter,
   },
 
   body: {

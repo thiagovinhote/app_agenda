@@ -63,6 +63,7 @@ class Login extends Component {
             placeholderTextColor="#ccc"
             value={phone}
             editable={false}
+            underlineColorAndroid="transparent"
           />
         </View>
         <View style={styles.containerInput}>
@@ -73,6 +74,7 @@ class Login extends Component {
             style={styles.input}
             placeholderTextColor="#ccc"
             onChangeText={text => this.setState({ password: text })}
+            underlineColorAndroid="transparent"
           />
         </View>
 

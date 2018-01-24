@@ -4,40 +4,57 @@ import { metrics, colors } from 'styles';
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    // justifyContent: 'space-between',
     marginBottom: metrics.miniMargin,
+    paddingHorizontal: metrics.smallMargin,
   },
 
   infoContainer: {
-    // alignSelf: 'stretch',
-    // width: metrics.screenWidth - (metrics.baseMargin * 2),
     flex: 1,
+    flexDirection: 'row',
     borderRadius: metrics.baseRadius,
-    padding: metrics.baseMargin,
+    padding: metrics.mediumMargin,
     backgroundColor: colors.white,
+    alignItems: 'center',
   },
 
-  topContainer: {
-    flexDirection: 'row',
+  detailContainer: {
+    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'space-between',
-    marginBottom: metrics.tinyMargin,
   },
 
   title: {
     fontWeight: 'bold',
     color: colors.dark,
+    marginBottom: metrics.tinyMargin,
+  },
+
+  containerHour: {
+    width: 62,
+    marginLeft: metrics.tinyMargin,
+    paddingVertical: metrics.tinyMargin,
+    alignItems: 'center',
+    backgroundColor: colors.yellowLighter,
+    borderRadius: 35 / 2,
   },
 
   hour: {
-    color: colors.regular,
+    fontWeight: 'bold',
+    color: colors.white,
   },
 
   subtitle: {
     color: colors.regular,
   },
 
+  buttons: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+
   buttonRight: {
-    marginLeft: metrics.miniMargin,
+    marginRight: metrics.miniMargin,
     backgroundColor: colors.danger,
   },
 

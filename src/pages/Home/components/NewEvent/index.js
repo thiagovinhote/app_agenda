@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /* Presentational */
-import { View, Text, Modal, TextInput, TouchableOpacity, Keyboard } from 'react-native';
+import { View, Text, Modal, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 
@@ -55,65 +55,72 @@ class NewEvent extends Component {
       return (
         <Modal
           {...this.props}
+          onRequestClose={() => {}}
         >
           <View style={[styles.container, styles.content]}>
             <View style={styles.box}>
-              <Text style={styles.title}>Criar evento</Text>
-
-              <View style={styles.containerInput}>
-                <Icon style={styles.icon} name="calendar" size={20} />
-                <TextInput
-                  placeholder="Selecione data e horário"
-                  style={styles.input}
-                  placeholderTextColor="#999999"
-                  value={this.state.event.dateHour.toString()}
-                  onTouchStart={this.showPicker}
-                  underlineColorAndroid="transparent"
-                  onFocus={Keyboard.dismiss}
-                />
-
-                <DateTimePicker
-                  mode="datetime"
-                  isVisible={this.state.pickerVisible}
-                  onConfirm={this.changePicker}
-                  onCancel={this.hiddenPicker}
-                />
-              </View>
-
-              <View style={styles.containerInput}>
-                <TextInput
-                  placeholder="Qual o nome do evento?"
-                  style={styles.input}
-                  placeholderTextColor="#999999"
-                  onChangeText={(t) => { this.state.event.title = t }}
-                />
-              </View>
-
-              <View style={styles.containerInput}>
-                <TextInput
-                  placeholder="Onde irá ocorrer?"
-                  style={styles.input}
-                  placeholderTextColor="#999999"
-                  onChangeText={(t) => { this.state.event.place = t }}
-                />
-              </View>
-
-              <TouchableOpacity
-                activeOpacity={0.6}
-                style={styles.button}
-                onPress={this.save}
+              <ScrollView
+                style={styles.scroll}
+                showsVerticalScrollIndicator={false}
               >
-                <Text style={styles.text}>Criar evento</Text>
-              </TouchableOpacity>
+                <Text style={styles.title}>Criar evento</Text>
 
-              <TouchableOpacity
-                activeOpacity={0.6}
-                style={styles.buttonNeat}
-                onPress={this.props.close}
-              >
-                <Text style={styles.textNeat}>Cancelar</Text>
-              </TouchableOpacity>
+                <View style={styles.containerInput}>
+                  <Icon style={styles.icon} name="calendar" size={20} />
+                  <TextInput
+                    placeholder="Selecione data e horário"
+                    style={styles.input}
+                    placeholderTextColor="#999999"
+                    value={this.state.event.dateHour.toString()}
+                    onTouchStart={this.showPicker}
+                    underlineColorAndroid="transparent"
+                    onFocus={Keyboard.dismiss}
+                  />
 
+                  <DateTimePicker
+                    mode="datetime"
+                    isVisible={this.state.pickerVisible}
+                    onConfirm={this.changePicker}
+                    onCancel={this.hiddenPicker}
+                  />
+                </View>
+
+                <View style={styles.containerInput}>
+                  <TextInput
+                    placeholder="Qual o nome do evento?"
+                    style={styles.input}
+                    placeholderTextColor="#999999"
+                    onChangeText={(t) => { this.state.event.title = t }}
+                    underlineColorAndroid="transparent"
+                  />
+                </View>
+
+                <View style={styles.containerInput}>
+                  <TextInput
+                    placeholder="Onde irá ocorrer?"
+                    style={styles.input}
+                    placeholderTextColor="#999999"
+                    onChangeText={(t) => { this.state.event.place = t }}
+                    underlineColorAndroid="transparent"
+                  />
+                </View>
+
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  style={styles.button}
+                  onPress={this.save}
+                >
+                  <Text style={styles.text}>Criar evento</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  activeOpacity={0.6}
+                  style={styles.buttonNeat}
+                  onPress={this.props.close}
+                >
+                  <Text style={styles.textNeat}>Cancelar</Text>
+                </TouchableOpacity>
+              </ScrollView>
             </View>
           </View>
         </Modal>

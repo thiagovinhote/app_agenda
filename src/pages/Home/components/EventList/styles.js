@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    paddingHorizontal: metrics.baseMargin,
+    // paddingHorizontal: metrics.baseMargin,
   },
 
   textEmpty: {

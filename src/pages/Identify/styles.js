@@ -2,7 +2,10 @@ import { StyleSheet } from 'react-native';
 import { general, metrics, colors, fonts } from 'styles';
 
 const styles = StyleSheet.create({
-  ...general,
+  container: {
+    flex: 1,
+    backgroundColor: colors.white,
+  },
 
   content: {
     alignItems: 'center',
@@ -11,7 +14,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: colors.white,
+    color: colors.greenLighter,
     fontSize: fonts.bigger,
     fontWeight: '900',
     letterSpacing: 3,
@@ -22,6 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: colors.darker,
     alignSelf: 'stretch',
+    alignItems: 'center',
     borderRadius: metrics.baseRadius,
     padding: metrics.mediumMargin,
   },

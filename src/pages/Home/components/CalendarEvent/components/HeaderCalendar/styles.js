@@ -3,7 +3,7 @@ import { metrics, colors, fonts } from 'styles';
 
 const styles = StyleSheet.create({
   containerHeader: {
-    paddingHorizontal: metrics.bigMargin,
+    paddingHorizontal: metrics.smallMargin,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -12,8 +12,8 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: colors.white,
-    fontSize: fonts.bMedium,
+    color: colors.dark,
+    fontSize: fonts.big,
     fontWeight: 'bold',
   },
 
@@ -25,23 +25,32 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    color: colors.white,
+    color: colors.grayLighter,
+    fontSize: 35,
   },
 
   week: {
     paddingTop: metrics.tinyMargin,
-    paddingHorizontal: metrics.bigMargin,
+    paddingBottom: metrics.tinyMargin,
+    paddingHorizontal: metrics.smallMargin,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
 
   dayHeader: {
-    color: colors.white,
+    color: colors.dark,
     fontWeight: 'bold',
     marginTop: 2,
     marginBottom: 7,
     width: 32,
     textAlign: 'center',
+  },
+
+  borderBottom: {
+    marginHorizontal: metrics.smallMargin,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.grayLighter,
+    opacity: 0.5,
   },
 });
 

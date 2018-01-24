@@ -48,6 +48,7 @@ class Identify extends Component {
             style={styles.input}
             placeholderTextColor="#ccc"
             onChangeText={text => this.setState({ phone: text })}
+            underlineColorAndroid="transparent"
           />
         </View>
 

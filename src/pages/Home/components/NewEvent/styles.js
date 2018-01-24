@@ -7,20 +7,24 @@ const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical: metrics.baseMargin,
     paddingHorizontal: metrics.baseMargin,
     backgroundColor: colors.backgroundTraparent,
+  },
+
+  scroll: {
+    paddingHorizontal: metrics.baseMargin,
+    alignSelf: 'stretch',
   },
 
   box: {
     borderRadius: metrics.baseRadius,
     alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: metrics.baseMargin,
     backgroundColor: colors.white,
   },
 
   title: {
+    alignSelf: 'center',
     marginVertical: 50,
     color: colors.background,
     fontSize: fonts.bMedium,
@@ -35,6 +39,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     borderRadius: metrics.baseRadius,
     padding: metrics.mediumMargin,
+    alignItems: 'center',
   },
 
   icon: {
@@ -63,6 +68,7 @@ const styles = StyleSheet.create({
   },
 
   buttonNeat: {
+    alignSelf: 'center',
     padding: metrics.mediumMargin,
     marginBottom: metrics.bigMargin,
   },

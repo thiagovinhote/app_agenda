@@ -11,12 +11,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
-    backgroundColor: colors.background,
+    backgroundColor: colors.white,
     overflow: 'hidden',
   },
 
   title: {
-    color: colors.white,
+    color: colors.regular,
     fontSize: fonts.medium,
     fontWeight: '900',
     letterSpacing: 1,

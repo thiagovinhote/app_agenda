@@ -1,14 +1,18 @@
 import { StyleSheet } from 'react-native';
-import { metrics, colors } from 'styles';
+import { general, metrics, colors } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.darker,
+    backgroundColor: colors.white,
+    borderBottomLeftRadius: metrics.baseRadius,
+    borderBottomRightRadius: metrics.baseRadius,
+    ...general.shadow,
+    shadowOffset: { width: 0, height: 6 },
   },
 
   content: {
     paddingVertical: metrics.miniMargin,
-    paddingHorizontal: metrics.bigMargin,
+    paddingHorizontal: metrics.smallMargin,
     // backgroundColor: colors.danger,
   },
 
