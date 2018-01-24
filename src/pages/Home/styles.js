@@ -5,12 +5,11 @@ const styles = StyleSheet.create({
   ...general,
 
   headerLeft: {
-    backgroundColor: colors.greenLight,
-    borderRadius: 30 / 2,
-    width: 30,
-    height: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: colors.orangeLighter,
+  },
+
+  headerRight: {
+    backgroundColor: colors.greenLighter,
   },
 });
 

@@ -17,4 +17,9 @@ export default {
   transparent: 'rgba(0, 0, 0, 0.5)',
 
   clear: 'rgba(0, 0, 0, 0.0)',
+
+  orangeLighter: '#F78863',
+  greenLighter: '#7AB1C2',
+  grayLighter: '#D6D6DB',
+
 };

@@ -32,7 +32,7 @@ class Home extends Component {
 
   onPressDay = (day) => {
     const { eventRequest } = this.props;
-    return eventRequest(day);
+    // return eventRequest(day);
   }
 
   onScroll = (event) => {
@@ -78,6 +78,7 @@ class Home extends Component {
           propsRight={{
             iconName: 'user',
             onPress: this.actionRight,
+            style: styles.headerRight,
           }}
         />
 

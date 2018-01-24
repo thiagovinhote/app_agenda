@@ -10,27 +10,32 @@ import styles from './styles';
 
 const Header = ({ title, propsLeft, propsRight }) => (
   <View style={styles.container}>
-    <View style={propsLeft.style}>
+    <View>
       { propsLeft &&
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.button, styles.left, propsLeft.style]}
           activeOpacity={0.6}
           onPress={propsLeft.onPress}
         >
-          <Icon style={styles.icon} name={propsLeft.iconName} size={20} />
-        </TouchableOpacity>}
+          <View style={styles.contentButton}>
+            <Icon style={styles.icon} name={propsLeft.iconName} size={20} />
+          </View>
+        </TouchableOpacity>
+      }
     </View>
 
     <Text style={styles.title}>{ title }</Text>
 
-    <View style={propsRight.style}>
+    <View>
       { propsRight &&
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.button, styles.right, propsRight.style]}
           activeOpacity={0.6}
           onPress={propsRight.onPress}
         >
-          <Icon style={styles.icon} name={propsRight.iconName} size={20} />
+          <View style={styles.contentButton}>
+            <Icon style={styles.icon} name={propsRight.iconName} size={20} />
+          </View>
         </TouchableOpacity>}
     </View>
   </View>
