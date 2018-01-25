@@ -29,7 +29,6 @@ export class EventItem extends Component {
 
   state = {
     buttonLeft: false,
-    buttonRight: false,
     offset: new Animated.ValueXY({ x: 0, y: 0 }),
   }
 
@@ -43,17 +42,15 @@ export class EventItem extends Component {
       }]),
 
       onPanResponderGrant: () => {
-        this.hiddenButtons();
+        // this.hiddenButtons();
       },
 
       onPanResponderRelease: () => {
+        this.hiddenButtons();
+
         const { _value } = this.state.offset.x;
-        if (_value < -150 || _value > 150) {
-          if (_value < -150) {
-            this.setState({ buttonRight: true });
-          } else if (_value > 150) {
-            this.setState({ buttonLeft: true });
-          }
+        if (_value > 150) {
+          this.setState({ buttonLeft: true });
         }
 
         Animated.spring(this.state.offset.x, {
@@ -71,7 +68,7 @@ export class EventItem extends Component {
     });
   }
 
-  hiddenButtons = () => this.setState({ buttonLeft: false, buttonRight: false });
+  hiddenButtons = () => this.setState({ buttonLeft: false });
 
   formateDate = (dateString) => {
     const date = new Date(dateString);
@@ -84,7 +81,7 @@ export class EventItem extends Component {
     return format;
   }
 
-  actionLeft = async () => {
+  actionShare = async () => {
     const { event } = this.props;
     const message = `${event.place}! ${event.dateHour}`;
 
@@ -97,7 +94,7 @@ export class EventItem extends Component {
     return res;
   }
 
-  actionRight = () => {
+  actionDelete = () => {
     const { eventDeleteRequest, event: { _id } } = this.props;
     return eventDeleteRequest(_id);
   }
@@ -120,14 +117,16 @@ export class EventItem extends Component {
         { this.state.buttonLeft &&
           <View style={styles.buttons}>
             <ButtonAction
-              style={styles.buttonRight}
+              style={styles.button}
               iconName="close"
-              onPress={this.actionRight}
+              color="#E35E5E"
+              onPress={this.actionDelete}
             />
             <ButtonAction
-              style={styles.buttonLeft}
+              style={styles.button}
               iconName="share"
-              onPress={this.actionLeft}
+              color="#5ECCE3"
+              onPress={this.actionShare}
             />
           </View>
         }

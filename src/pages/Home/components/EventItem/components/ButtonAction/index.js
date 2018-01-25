@@ -13,10 +13,12 @@ class ButtonAction extends Component {
     iconName: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
     style: View.propTypes.style,
+    color: PropTypes.string,
   };
 
   static defaultProps = {
     style: {},
+    color: '#E35E5E',
   };
 
   state = {
@@ -32,12 +34,16 @@ class ButtonAction extends Component {
   }
 
   render() {
-    const { onPress, iconName, style } = this.props;
+    const {
+      onPress,
+      iconName,
+      style,
+      color,
+    } = this.props;
     return (
       <Animated.View
         style={[
           styles.container,
-          styles.danger,
           style,
           {
             transform: [
@@ -53,7 +59,7 @@ class ButtonAction extends Component {
             styles.button,
           ]}
         >
-          <Icon style={styles.icon} name={iconName} size={20} />
+          <Icon style={[styles.icon, { color }]} name={iconName} size={20} />
         </TouchableOpacity>
       </Animated.View>
     );

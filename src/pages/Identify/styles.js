@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   containerInput: {
     marginTop: 64,
     flexDirection: 'row',
-    backgroundColor: colors.darker,
+    backgroundColor: colors.purpleLighter,
     alignSelf: 'stretch',
     alignItems: 'center',
     borderRadius: metrics.baseRadius,

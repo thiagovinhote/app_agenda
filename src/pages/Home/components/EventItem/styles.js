@@ -1,27 +1,27 @@
 import { StyleSheet } from 'react-native';
-import { metrics, colors } from 'styles';
+import { general, metrics, colors } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    // justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: metrics.miniMargin,
     paddingHorizontal: metrics.smallMargin,
+    paddingVertical: metrics.tinyMargin,
   },
 
   infoContainer: {
-    flex: 1,
     flexDirection: 'row',
     borderRadius: metrics.baseRadius,
-    padding: metrics.mediumMargin,
+    padding: metrics.smallMargin,
     backgroundColor: colors.white,
     alignItems: 'center',
+    width: '100%',
+    ...general.shadow,
   },
 
   detailContainer: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
   },
 
   title: {
@@ -53,14 +53,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 
-  buttonRight: {
+  button: {
     marginRight: metrics.miniMargin,
-    backgroundColor: colors.danger,
-  },
-
-  buttonLeft: {
-    marginRight: metrics.miniMargin,
-    backgroundColor: colors.info,
   },
 });
 

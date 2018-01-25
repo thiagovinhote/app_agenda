@@ -1,6 +1,7 @@
 /* Core */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { parseDate } from 'utils/dateutils';
 
 /* Presentational */
 import { View, Text, Modal, TextInput, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
@@ -38,6 +39,7 @@ class NewEvent extends Component {
           title: '',
           place: '',
         },
+        dateFormat: '',
       });
       return eventSaveRequest(event);
     }
@@ -48,6 +50,8 @@ class NewEvent extends Component {
 
     changePicker = (date) => {
       this.state.event.dateHour = date;
+      const d = parseDate(date);
+      this.setState({ dateFormat: d.toString('dd/MM/yyyy HH:mm') });
       this.hiddenPicker();
     }
 
@@ -70,15 +74,18 @@ class NewEvent extends Component {
                   <TextInput
                     placeholder="Selecione data e horário"
                     style={styles.input}
-                    placeholderTextColor="#999999"
-                    value={this.state.event.dateHour.toString()}
+                    placeholderTextColor="#cdcdcd"
+                    value={this.state.dateFormat}
                     onTouchStart={this.showPicker}
                     underlineColorAndroid="transparent"
                     onFocus={Keyboard.dismiss}
+                    editable={false}
                   />
 
                   <DateTimePicker
+                    titleIOS="Dia do evento"
                     mode="datetime"
+                    is24Hour
                     isVisible={this.state.pickerVisible}
                     onConfirm={this.changePicker}
                     onCancel={this.hiddenPicker}
@@ -89,7 +96,7 @@ class NewEvent extends Component {
                   <TextInput
                     placeholder="Qual o nome do evento?"
                     style={styles.input}
-                    placeholderTextColor="#999999"
+                    placeholderTextColor="#cdcdcd"
                     onChangeText={(t) => { this.state.event.title = t }}
                     underlineColorAndroid="transparent"
                   />
@@ -99,7 +106,7 @@ class NewEvent extends Component {
                   <TextInput
                     placeholder="Onde irá ocorrer?"
                     style={styles.input}
-                    placeholderTextColor="#999999"
+                    placeholderTextColor="#cdcdcd"
                     onChangeText={(t) => { this.state.event.place = t }}
                     underlineColorAndroid="transparent"
                   />

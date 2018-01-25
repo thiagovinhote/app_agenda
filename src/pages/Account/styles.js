@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
   separator: {
     marginTop: metrics.miniMargin,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: colors.darker,
+    backgroundColor: colors.grayLighter,
+    opacity: 0.5,
   },
 
   content: {
@@ -30,8 +31,9 @@ const styles = StyleSheet.create({
   containerInput: {
     marginTop: metrics.miniMargin,
     flexDirection: 'row',
-    backgroundColor: colors.darker,
+    backgroundColor: colors.purpleLighter,
     alignSelf: 'stretch',
+    alignItems: 'center',
     borderRadius: metrics.baseRadius,
     padding: metrics.mediumMargin,
   },
@@ -56,13 +58,17 @@ const styles = StyleSheet.create({
   },
 
   buttonLogout: {
-    backgroundColor: colors.danger,
+    backgroundColor: colors.pinkLighter,
   },
 
   text: {
     color: colors.white,
     fontSize: fonts.medium,
     fontWeight: 'bold',
+  },
+
+  headerLeft: {
+    backgroundColor: colors.success,
   },
 });
 

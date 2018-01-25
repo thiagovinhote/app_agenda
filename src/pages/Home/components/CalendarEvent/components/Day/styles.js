@@ -27,6 +27,7 @@ export default function styleConstructor() {
       backgroundColor: colors.purpleLighter,
       borderRadius: 18,
       ...general.shadow,
+      shadowRadius: 4,
     },
 
     todayText: {

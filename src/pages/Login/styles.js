@@ -22,9 +22,9 @@ const styles = StyleSheet.create({
   },
 
   containerInput: {
-    marginTop: 15,
+    marginTop: metrics.miniMargin,
     flexDirection: 'row',
-    backgroundColor: colors.darker,
+    backgroundColor: colors.purpleLighter,
     alignSelf: 'stretch',
     alignItems: 'center',
     borderRadius: metrics.baseRadius,

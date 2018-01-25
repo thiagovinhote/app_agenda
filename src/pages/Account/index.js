@@ -18,6 +18,21 @@ class Account extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     signOut: PropTypes.func.isRequired,
+    auth: PropTypes.shape({
+      user: PropTypes.shape({
+        user: PropTypes.shape({
+          name: PropTypes.string,
+        }),
+      }),
+    }),
+  }
+
+  static defaultProps = {
+    auth: {
+      user: {
+        user: { name: '' },
+      },
+    },
   }
 
   state = {
@@ -39,25 +54,25 @@ class Account extends Component {
   }
 
   render() {
+    const { user } = this.props.auth.user;
     return (
       <View style={styles.container}>
         <Header
           propsLeft={{
             iconName: 'chevron-left',
             onPress: this.navigateBack,
+            style: styles.headerLeft,
           }}
+          title="Minha Conta"
         />
-        <View style={styles.section}>
-          <Text style={styles.titleSection}>Minha Conta</Text>
-        </View>
 
         <View style={styles.content}>
           <View style={styles.containerInput}>
             <Icon style={styles.icon} name="user" size={20} />
             <TextInput
-              placeholder="Seu número de telefone"
+              placeholder="Nome do usuário"
               style={styles.input}
-              value="Thiago Vinhote"
+              value={user ? user.name : ''}
               editable={false}
             />
           </View>
@@ -104,9 +119,13 @@ class Account extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
 const mapDispatchToProps = dispatch => ({
   signOut: () => dispatch(AuthActions.authSignOut()),
   dispatch,
 });
 
-export default connect(null, mapDispatchToProps)(Account);
+export default connect(mapStateToProps, mapDispatchToProps)(Account);

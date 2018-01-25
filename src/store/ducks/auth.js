@@ -103,7 +103,7 @@ export const authenticateFailure = () => ({
 
 export const signOut = state => ({
   ...state,
-  user: null,
+  user: {},
 });
 
 export const reducer = createReducer(INITIAL_STATE, {

@@ -14,9 +14,8 @@ class EventList extends Component {
     loading: PropTypes.bool.isRequired,
   }
 
-  renderItem = ({ item, index }) => (
+  renderItem = ({ item }) => (
     <EventItemComponent
-      style={index === 0 ? styles.firstItem : {}}
       event={item}
     />
   );
@@ -47,7 +46,7 @@ class EventList extends Component {
         {
           !this.props.loading
             ? this.renderContent()
-            : <ActivityIndicator size="small" color="#FFF" />
+            : <ActivityIndicator size="small" color="#49C7A7" />
         }
       </View>
     );

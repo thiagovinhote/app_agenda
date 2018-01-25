@@ -14,7 +14,7 @@ function xdateToData(xdate) {
     month: xdate.getMonth() + 1,
     day: xdate.getDate(),
     timestamp: XDate(dateString, true).getTime(),
-    dateString: dateString
+    dateString,
   };
 }
 
@@ -26,7 +26,7 @@ function parseDate(d) {
   } else if (d instanceof XDate) { // xdate
     return XDate(d.toString('yyyy-MM-dd'), true);
   } else if (d.getTime) { // javascript date
-    const dateString = d.getFullYear() + '-' + padNumber((d.getMonth() + 1)) + '-' + padNumber(d.getDate());
+    const dateString = d.getFullYear() + '-' + padNumber((d.getMonth() + 1)) + '-' + padNumber(d.getDate()) + ' ' + d.getHours() + ':' + d.getMinutes();
     return XDate(dateString, true);
   } else if (d.year) {
     const dateString = d.year + '-' + padNumber(d.month) + '-' + padNumber(d.day);

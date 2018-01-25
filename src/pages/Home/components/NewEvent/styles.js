@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   title: {
     alignSelf: 'center',
     marginVertical: 50,
-    color: colors.background,
+    color: colors.regular,
     fontSize: fonts.bMedium,
     fontWeight: 'bold',
     marginBottom: metrics.bigMargin,
@@ -35,21 +35,21 @@ const styles = StyleSheet.create({
   containerInput: {
     marginBottom: metrics.miniMargin,
     flexDirection: 'row',
-    backgroundColor: colors.light,
+    backgroundColor: colors.purpleLighter,
     alignSelf: 'stretch',
+    alignItems: 'center',
     borderRadius: metrics.baseRadius,
     padding: metrics.mediumMargin,
-    alignItems: 'center',
   },
 
   icon: {
-    color: colors.regular,
-    paddingRight: metrics.smallMargin,
+    color: colors.white,
   },
 
   input: {
     flex: 2,
-    color: colors.background,
+    paddingLeft: metrics.smallMargin,
+    color: colors.white,
   },
 
   button: {

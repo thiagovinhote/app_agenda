@@ -16,11 +16,13 @@ class HeaderCalendar extends Component {
     monthFormat: PropTypes.string,
     month: PropTypes.shape().isRequired,
     mini: PropTypes.bool,
+    tap: PropTypes.func,
   };
 
   static defaultProps = {
     monthFormat: 'MMMM yyyy',
     mini: false,
+    tap: () => {},
   };
 
   arrowLeft = () => {
@@ -31,6 +33,10 @@ class HeaderCalendar extends Component {
   arrowRight = () => {
     const next = this.props.mini ? this.props.dayRelease : this.props.monthRelease;
     next(1);
+  }
+
+  tap = () => {
+    this.props.tap();
   }
 
   render() {
@@ -48,7 +54,7 @@ class HeaderCalendar extends Component {
             <Icon style={styles.icon} name="chevron-left" />
           </TouchableOpacity>
 
-          <Text style={styles.title}>
+          <Text onTouchStart={this.tap} style={styles.title}>
             {month.toString(format)}
           </Text>
 

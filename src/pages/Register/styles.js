@@ -19,10 +19,11 @@ const styles = StyleSheet.create({
   },
 
   containerInput: {
-    marginTop: 15,
+    marginTop: metrics.miniMargin,
     flexDirection: 'row',
-    backgroundColor: colors.darker,
+    backgroundColor: colors.purpleLighter,
     alignSelf: 'stretch',
+    alignItems: 'center',
     borderRadius: metrics.baseRadius,
     padding: metrics.mediumMargin,
   },
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   },
 
   textNeat: {
-    color: colors.white,
+    color: colors.regular,
   },
 });
 

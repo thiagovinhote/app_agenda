@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: metrics.baseRadius,
     borderBottomRightRadius: metrics.baseRadius,
     ...general.shadow,
-    shadowOffset: { width: 0, height: 6 },
+    shadowOffset: { width: 0, height: 3 },
+    zIndex: 1,
   },
 
   content: {

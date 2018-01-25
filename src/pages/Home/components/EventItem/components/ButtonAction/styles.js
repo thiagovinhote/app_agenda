@@ -1,10 +1,14 @@
 import { StyleSheet } from 'react-native';
-import { metrics, colors } from 'styles';
+import { general, metrics, colors } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
-    width: 80,
-    borderRadius: metrics.baseRadius,
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    backgroundColor: colors.white,
+    ...general.shadow,
+    shadowOpacity: 0.3,
   },
 
   button: {
@@ -14,7 +18,7 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    color: colors.white,
+    color: colors.regular,
   },
 });
 
